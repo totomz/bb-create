@@ -1,0 +1,67 @@
+{
+  "repoName": "my-ideas/test100",
+  "repoDefinition": {
+    "scm": "git",
+    "is_private": true,
+    "description": "A test repository - configuration over repetition",
+    "has_wiki": true,
+    "fork_policy": "no_public_forks",
+    "project": {
+      "key": "SMARTU"
+    }
+  },
+  "pipelineEnvs": [
+    {
+      "key": "AWS_SECRET_1",
+      "value": "How_does_it_feel",
+      "secured": false
+    },
+    {
+      "key": "AWS_SECRET_2",
+      "value": "ToBeAnHero",
+      "secured": false
+    },
+    {
+      "key": "AWS_SECRET_3",
+      "value": "DAJEEEEEE",
+      "secured": false
+    }
+  ],
+  "branchRestrictions": [
+    {
+      "kind": "require_passing_builds_to_merge",
+      "pattern": "master",
+      "value": 1,
+      "users": [],
+      "groups": []
+    },
+    {
+      "kind": "require_approvals_to_merge",
+      "pattern": "master",
+      "value": 1,
+      "users": [],
+      "groups": []
+    },
+    {
+      "kind": "force",
+      "pattern": "master",
+      "value": null,
+      "users": [],
+      "groups": []
+    },
+    {
+      "kind": "delete",
+      "pattern": "master",
+      "value": null,
+      "users": [],
+      "groups": []
+    },
+    {
+      "kind": "push",
+      "pattern": "master",
+      "value": null,
+      "users": [],
+      "groups": []
+    }
+  ]
+}
