@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 const merge = require('deepmerge');
 const rp = require('request-promise');
 const Promise = require("bluebird");
