@@ -1,5 +1,5 @@
 {
-  "repoName": "my-ideas/test120",
+  "repoName": "my-ideas/test200",
   "repoDefinition": {
     "scm": "git",
     "is_private": true,
@@ -65,8 +65,6 @@
     }
   ],
   "hipchatNotifications": {
-//    "id": "test110/2302491",
-//    "repository": "my-ideas/test110",
     "room": {
       "id": 4112814,
       "group": { "name": "My-ideas" },
