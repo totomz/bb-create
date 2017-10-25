@@ -1,5 +1,5 @@
 {
-  "repoName": "my-ideas/test110",
+  "repoName": "my-ideas/test120",
   "repoDefinition": {
     "scm": "git",
     "is_private": true,
@@ -63,5 +63,100 @@
       "users": [],
       "groups": []
     }
-  ]
+  ],
+  "hipchatNotifications": {
+//    "id": "test110/2302491",
+//    "repository": "my-ideas/test110",
+    "room": {
+      "id": 4112814,
+      "group": { "name": "My-ideas" },
+      "name": "elysium-dev"
+    },
+    "notifications": [
+      {
+        "id": "pullrequest:created",
+        "subscribed": true,
+        "name": "Created",
+        "category": "Pull requests"
+      },
+      {
+        "id": "pullrequest:comment_created",
+        "subscribed": false,
+        "name": "Commented",
+        "category": "Pull requests"
+      },
+      {
+        "id": "pullrequest:fulfilled",
+        "subscribed": false,
+        "name": "Merged",
+        "category": "Pull requests"
+      },
+      {
+        "id": "pullrequest:rejected",
+        "subscribed": true,
+        "name": "Declined",
+        "category": "Pull requests"
+      },
+      {
+        "id": "repo:push",
+        "subscribed": false,
+        "name": "Pushed",
+        "category": "Commits"
+      },
+      {
+        "id": "repo:commit_comment_created",
+        "subscribed": false,
+        "name": "Commented",
+        "category": "Commits"
+      },
+      {
+        "id": "issue:created",
+        "subscribed": false,
+        "name": "Created",
+        "category": "Issues"
+      },
+      {
+        "id": "issue:updated",
+        "subscribed": false,
+        "name": "Updated",
+        "category": "Issues"
+      },
+      {
+        "id": "issue:comment_created",
+        "subscribed": false,
+        "name": "Commented",
+        "category": "Issues"
+      },
+      {
+        "id": "pullrequest:approved",
+        "subscribed": true,
+        "name": "Approved",
+        "category": "Pull requests"
+      },
+      {
+        "id": "pullrequest:unapproved",
+        "subscribed": true,
+        "name": "Unapproved",
+        "category": "Pull requests"
+      },
+      {
+        "id": "repo:commit_status_INPROGRESS",
+        "subscribed": true,
+        "name": "Started",
+        "category": "Pipelines / Builds"
+      },
+      {
+        "id": "repo:commit_status_SUCCESSFUL",
+        "subscribed": true,
+        "name": "Successful",
+        "category": "Pipelines / Builds"
+      },
+      {
+        "id": "repo:commit_status_FAILED",
+        "subscribed": true,
+        "name": "Failed",
+        "category": "Pipelines / Builds"
+      }
+    ]
+  }
 }
