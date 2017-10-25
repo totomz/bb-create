@@ -1,11 +1,12 @@
 {
-  "repoName": "my-ideas/test205",
+  "repoName": "my-ideas/test304",
   "repoDefinition": {
     "scm": "git",
     "is_private": true,
     "description": "A test repository - configuration over repetition",
     "has_wiki": true,
     "fork_policy": "no_public_forks",
+    "mainbranch": "master",
     "project": {
       "key": "SMARTU"
     }
@@ -44,20 +45,6 @@
     },
     {
       "kind": "force",
-      "pattern": "master",
-      "value": null,
-      "users": [],
-      "groups": []
-    },
-    {
-      "kind": "delete",
-      "pattern": "master",
-      "value": null,
-      "users": [],
-      "groups": []
-    },
-    {
-      "kind": "push",
       "pattern": "master",
       "value": null,
       "users": [],

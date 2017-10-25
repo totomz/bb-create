@@ -69,7 +69,24 @@ BBCreate.prototype.createRepo = function() {
         });
 
         return Promise.all(requests);
-    });
+    })
+    .then(restrictions => {
+
+        hyperLog("To clone your repo run");
+        newRepository.links.clone.forEach(link => {
+            hyperLog(`git clone ${link.href}`)
+        });
+        hyperLog(" ");
+        console.log("#".padEnd(hLength, "#") + "#");
+
+        console.log("Scaffolding using Yeoman?");
+        console.log("git checkout -b master");
+        console.log("yo lambda");
+        console.log('git add . && git commit -a -m "Initial import"');
+        console.log('git push -u origin master');
+
+
+    }) ;
 
     /* Create HipChat notifications */
 
@@ -78,6 +95,12 @@ BBCreate.prototype.createRepo = function() {
     //     return this.hipchatNotification(newRepository)
     // })
 };
+
+const header = "############################################ DONE ############################################";
+const hLength = header.length - 1;
+const hyperLog = function (message) {
+    console.log(`# ${message}`.padEnd(hLength) + "#");
+}
 
 /**
  * Enable HipChat notifications
