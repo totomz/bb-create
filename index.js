@@ -17,4 +17,7 @@ new BBCreate(
 )
 .createRepo()
 .then(repo => { console.log("DONE"); })
-.catch(err => { console.log("ERROR!", err); });
+.catch(err => {
+    console.log("ERROR!");
+    console.log(err.message);
+});

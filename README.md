@@ -7,8 +7,13 @@ A tiny script to create `Bitbucket` repositories using a configuration file, ins
 
 Supported settings:
 * Creation of the repo with its metadata (name, description, private/public, etc.)
-* Create pipeline environment variables (but users must enable the pipeline manually)
+* Enable pipeline and set environment variables
 * Branch restrictions (number of review, number of passing builds)
+
+
+Missing features
+* Create HipChat notifications
+* Test
 
 # How to use
 

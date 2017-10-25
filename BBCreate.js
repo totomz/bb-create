@@ -15,7 +15,7 @@ function BBCreate(settings, repoDef){
 BBCreate.prototype.createRepo = function() {
 
     const repoName = this.repoDef.repoName;
-    const repoSettings = this.repoDef.repoSettings;
+    const repoSettings = this.repoDef.repoDefinition;
     const pipelineEnvs = this.repoDef.pipelineEnvs;
     const branchRestrictions = this.repoDef.branchRestrictions;
 
@@ -27,39 +27,56 @@ BBCreate.prototype.createRepo = function() {
         method: 'POST',
         body: repoSettings
     })
-    /* Create the pipelines variables */
-        .then(repo => {
-            console.log(`Repo created - ${repo.uuid}. `);
-            newRepository = repo;
-            let requests = [];
-            pipelineEnvs.forEach(env => {
-                console.log(`Creating env ${env.key}`);
-                requests.push(this.buildRequest(`repositories/${repoName}/pipelines_config/variables/`, {
-                    method: 'POST',
-                    body: env
-                }))
-            });
+    .then(repo => {
+        console.log(`Repo created - ${repo.uuid}. `);
+        newRepository = repo;
+        return repo;
+    })
 
-            return Promise.all(requests);
-        })
-        /* Create the branch restirctions */
-        .then(envs => {
-            let requests = [];
-            branchRestrictions.forEach(restriction => {
-                console.log(`Creating restriction ${restriction.kind}`);
-                requests.push(this.buildRequest(`repositories/${repoName}/branch-restrictions`, {
-                    method: 'POST',
-                    body: restriction
-                }))
-            });
-
-            return Promise.all(requests);
+    /* Enable pipelines */
+    .then(repo => {
+        console.log(`Enabling pipelines`);
+        return this.buildRequest(`repositories/${repoName}/pipelines_config `, {
+            method: 'PUT',
+            body: { enabled: true }
         });
-        // /* Create HipChat notifications */
-        // .then(restrictions => {
-        //     console.log(newRepository);
-        //     return this.hipchatNotification(newRepository)
-        // })
+    })
+
+    /* Create the pipelines variables */
+    .then(repo => {
+
+        let requests = [];
+        pipelineEnvs.forEach(env => {
+            console.log(`Creating env ${env.key}`);
+            requests.push(this.buildRequest(`repositories/${repoName}/pipelines_config/variables/`, {
+                method: 'POST',
+                body: env
+            }))
+        });
+
+        return Promise.all(requests);
+    })
+
+    /* Create the branch restirctions */
+    .then(envs => {
+        let requests = [];
+        branchRestrictions.forEach(restriction => {
+            console.log(`Creating restriction ${restriction.kind}`);
+            requests.push(this.buildRequest(`repositories/${repoName}/branch-restrictions`, {
+                method: 'POST',
+                body: restriction
+            }))
+        });
+
+        return Promise.all(requests);
+    });
+
+    /* Create HipChat notifications */
+
+    // .then(restrictions => {
+    //     console.log(newRepository);
+    //     return this.hipchatNotification(newRepository)
+    // })
 };
 
 /**
