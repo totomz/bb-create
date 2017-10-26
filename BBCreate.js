@@ -150,7 +150,7 @@ BBCreate.prototype.pushBranchMaster = function(newRepository, branchName = 'mast
             git
                 .checkoutLocalBranch(branchName)
                 .exec(() => {
-                    writer(`${repoFullPath}/.gitignore`, "# Add here ignored files")
+                    writer(`${repoFullPath}/README.md`, `# ${newRepository.name} `)
                         .then(gitignore => {
                             git
                                 .add(gitignore)
