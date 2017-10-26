@@ -11,12 +11,14 @@ const repoOpt = path.resolve(process.argv.pop());
 console.log(`Reading settings from ${settings}`);
 console.log(`Reading repo definition from ${repoOpt}`);
 
-new BBCreate(
+const bbCreate = new BBCreate(
     JSON.parse(fs.readFileSync(settings, 'UTF-8')),
     JSON.parse(fs.readFileSync(repoOpt, 'UTF-8'))
-)
-.createRepo()
-.then(repo => { console.log("DONE"); })
+);
+
+
+bbCreate.createRepo()
+.then(repo => { bbCreate.pushBranchMaster(repo) })
 .catch(err => {
     console.log("ERROR!");
     console.log(err.message);

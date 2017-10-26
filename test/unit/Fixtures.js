@@ -3,53 +3,53 @@ const createRepoResult = {
     "scm": "git",
     "website": "",
     "has_wiki": false,
-    "name": "test140",
+    "name": "test-for-bbcreate",
     "links": {
         "watchers": {
-            "href": "https://api.bitbucket.org/2.0/repositories/my-ideas/test140/watchers"
+            "href": "https://api.bitbucket.org/2.0/repositories/my-ideas/test-for-bbcreate/watchers"
         },
         "branches": {
-            "href": "https://api.bitbucket.org/2.0/repositories/my-ideas/test140/refs/branches"
+            "href": "https://api.bitbucket.org/2.0/repositories/my-ideas/test-for-bbcreate/refs/branches"
         },
         "tags": {
-            "href": "https://api.bitbucket.org/2.0/repositories/my-ideas/test140/refs/tags"
+            "href": "https://api.bitbucket.org/2.0/repositories/my-ideas/test-for-bbcreate/refs/tags"
         },
         "commits": {
-            "href": "https://api.bitbucket.org/2.0/repositories/my-ideas/test140/commits"
+            "href": "https://api.bitbucket.org/2.0/repositories/my-ideas/test-for-bbcreate/commits"
         },
         "clone": [
             {
-                "href": "https://tommasodoninelli@bitbucket.org/my-ideas/test140.git",
+                "href": "https://tommasodoninelli@bitbucket.org/my-ideas/test-for-bbcreate.git",
                 "name": "https"
             },
             {
-                "href": "git@bitbucket.org:my-ideas/test140.git",
+                "href": "git@bitbucket.org:my-ideas/test-for-bbcreate.git",
                 "name": "ssh"
             }
         ],
         "self": {
-            "href": "https://api.bitbucket.org/2.0/repositories/my-ideas/test140"
+            "href": "https://api.bitbucket.org/2.0/repositories/my-ideas/test-for-bbcreate"
         },
         "source": {
-            "href": "https://api.bitbucket.org/2.0/repositories/my-ideas/test140/src"
+            "href": "https://api.bitbucket.org/2.0/repositories/my-ideas/test-for-bbcreate/src"
         },
         "html": {
-            "href": "https://bitbucket.org/my-ideas/test140"
+            "href": "https://bitbucket.org/my-ideas/test-for-bbcreate"
         },
         "avatar": {
-            "href": "https://bitbucket.org/my-ideas/test140/avatar/32/"
+            "href": "https://bitbucket.org/my-ideas/test-for-bbcreate/avatar/32/"
         },
         "hooks": {
-            "href": "https://api.bitbucket.org/2.0/repositories/my-ideas/test140/hooks"
+            "href": "https://api.bitbucket.org/2.0/repositories/my-ideas/test-for-bbcreate/hooks"
         },
         "forks": {
-            "href": "https://api.bitbucket.org/2.0/repositories/my-ideas/test140/forks"
+            "href": "https://api.bitbucket.org/2.0/repositories/my-ideas/test-for-bbcreate/forks"
         },
         "downloads": {
-            "href": "https://api.bitbucket.org/2.0/repositories/my-ideas/test140/downloads"
+            "href": "https://api.bitbucket.org/2.0/repositories/my-ideas/test-for-bbcreate/downloads"
         },
         "pullrequests": {
-            "href": "https://api.bitbucket.org/2.0/repositories/my-ideas/test140/pullrequests"
+            "href": "https://api.bitbucket.org/2.0/repositories/my-ideas/test-for-bbcreate/pullrequests"
         }
     },
     "fork_policy": "allow_forks",
@@ -74,7 +74,7 @@ const createRepoResult = {
     "language": "",
     "created_on": "2017-10-25T07:20:34.281855+00:00",
     "mainbranch": null,
-    "full_name": "my-ideas/test140",
+    "full_name": "my-ideas/test-for-bbcreate",
     "has_issues": false,
     "owner": {
         "username": "my-ideas",
@@ -96,7 +96,7 @@ const createRepoResult = {
     "updated_on": "2017-10-25T07:20:34.353595+00:00",
     "size": 0,
     "type": "repository",
-    "slug": "test140",
+    "slug": "test-for-bbcreate",
     "is_private": false,
     "description": ""
 };

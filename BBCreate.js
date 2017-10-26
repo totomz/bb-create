@@ -1,6 +1,9 @@
 const merge = require('deepmerge');
 const rp = require('request-promise');
 const Promise = require("bluebird");
+const os = require('os');
+const writer = require('fs-writefile-promise');
+const rimraf = require('rimraf');
 
 function BBCreate(settings, repoDef){
     this.settings = settings;
@@ -70,37 +73,32 @@ BBCreate.prototype.createRepo = function() {
 
         return Promise.all(requests);
     })
+
+    /* Final stuff */
     .then(restrictions => {
 
-        hyperLog("To clone your repo run");
+        console.log(" ");
+        console.log(" ");
+        console.log(header);
+        hyperLog("Wanna clone the repo?")
         newRepository.links.clone.forEach(link => {
             hyperLog(`git clone ${link.href}`)
         });
         hyperLog(" ");
-        console.log("#".padEnd(hLength, "#") + "#");
+        console.log("#".padEnd(hLength, "#"));
 
-        console.log("Scaffolding using Yeoman?");
-        console.log("git checkout -b master");
-        console.log("yo lambda");
-        console.log('git add . && git commit -a -m "Initial import"');
-        console.log('git push -u origin master');
-
-
-    }) ;
-
-    /* Create HipChat notifications */
-
-    // .then(restrictions => {
-    //     console.log(newRepository);
-    //     return this.hipchatNotification(newRepository)
-    // })
+        return newRepository;
+    })
+    .then(whatever => {
+        return newRepository;
+    });
 };
 
 const header = "############################################ DONE ############################################";
 const hLength = header.length - 1;
 const hyperLog = function (message) {
     console.log(`# ${message}`.padEnd(hLength) + "#");
-}
+};
 
 /**
  * Enable HipChat notifications
@@ -124,6 +122,55 @@ BBCreate.prototype.hipchatNotification = function(newRepository) {
     // })
 };
 
+
+BBCreate.prototype.pushBranchMaster = function(newRepository, branchName = 'master'){
+
+    /*
+     Someone has done something wrong here....
+     simple-git does not chain using Promises. It chain its own functions.
+     AND we have rimraf, with its callback.
+     Yep.
+     */
+    return new Promise((resolve, reject) => {
+
+        const tmpPath = os.tmpdir();
+        const repoSshLink = newRepository.links.clone.filter(link => {return link.name === 'ssh'})[0].href;
+        const repoFullPath = `${tmpPath}/${newRepository.name}`;
+
+        console.log(`Creating branch ${branchName}`);
+
+        const simpleGit = require('simple-git')(tmpPath);
+        simpleGit.clone(repoSshLink, (err, data) => {
+
+            if(err){ return reject(err); }
+
+            console.log(data);
+
+            const git = require('simple-git')(repoFullPath);
+            git
+                .checkoutLocalBranch(branchName)
+                .exec(() => {
+                    writer(`${repoFullPath}/.gitignore`, "# Add here ignored files")
+                        .then(gitignore => {
+                            git
+                                .add(gitignore)
+                                .commit(`Initial commit for branch ${branchName}`)
+                                .push("origin", branchName)
+                                .exec(() => {
+                                    rimraf(repoFullPath, function () {
+                                        resolve("LOL");
+                                    });
+                                })
+                        })
+                })
+
+        })
+
+
+    });
+
+
+};
 
 BBCreate.prototype.buildRequest = function(path, options){
     const params = merge({

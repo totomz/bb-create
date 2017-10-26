@@ -1,9 +1,9 @@
 {
-  "repoName": "my-ideas/test304",
+  "repoName": "my-ideas/test-for-bbcreate",
   "repoDefinition": {
     "scm": "git",
     "is_private": true,
-    "description": "A test repository - configuration over repetition",
+    "description": "DO NOT DELETE ME - this repo is used to test bb-create https://www.npmjs.com/package/bb-create",
     "has_wiki": true,
     "fork_policy": "no_public_forks",
     "mainbranch": "master",
