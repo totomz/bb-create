@@ -1,5 +1,5 @@
 {
-  "name": "bb-create",
+  "name": "@my-ideas/bb-create",
   "version": "0.1.6",
   "description": "Create Bitbucket repository given a configuraiton file",
   "main": "index.js",
@@ -28,12 +28,12 @@
   },
   "dependencies": {
     "bluebird": "^3.5.1",
-    "commander": "^2.15.1",
+    "commander": "^2.16.0",
     "deepmerge": "^2.1.1",
     "fs-writefile-promise": "^2.0.0",
     "request": "^2.87.0",
     "request-promise": "^4.2.2",
     "rimraf": "^2.6.2",
-    "simple-git": "^1.95.0"
+    "simple-git": "^1.96.0"
   }
 }
