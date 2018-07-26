@@ -6,20 +6,13 @@ const BBCreate = require('./BBCreate');
 
 const home = process.env.HOME || process.env.USERPROFILE;
 const settings = path.join(home, '.bbcreate-settings.json');
-const repoOpt = path.resolve(process.argv.pop());
 
-console.log(`Reading settings from ${settings}`);
-console.log(`Reading repo definition from ${repoOpt}`);
+const program = require('commander');
 
-const bbCreate = new BBCreate(
-    JSON.parse(fs.readFileSync(settings, 'UTF-8')),
-    JSON.parse(fs.readFileSync(repoOpt, 'UTF-8'))
-);
+program
+    .version('0.1.6')
+    .command('update', 'Update repos to match their settings (only ENV variable)')
+    .command('create', 'Create a repo using a given configuration file')
+    .parse(process.argv);
 
 
-bbCreate.createRepo()
-.then(repo => { bbCreate.pushBranchMaster(repo) })
-.catch(err => {
-    console.log("ERROR!");
-    console.log(err.message);
-});

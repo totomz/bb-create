@@ -100,6 +100,31 @@ const hyperLog = function (message) {
     console.log(`# ${message}`.padEnd(hLength) + "#");
 };
 
+BBCreate.prototype.setPipelineEnv = function() {
+    let requests = [];
+    this.repoDef.pipelineEnvs.forEach(env => {
+        console.log(`Setting env ${env.key}`);
+        requests.push(this.buildRequest(`repositories/${this.repoDef.repoName}/pipelines_config/variables/`, {
+            method: 'POST',
+            body: env
+        }).catch(err => {
+            if (err.statusCode === 409 ) {
+                console.log(`ENV ${env.key} already set - updating`)
+                return this.buildRequest(`repositories/${this.repoDef.repoName}/pipelines_config/variables/`, {
+                    method: 'PUT',
+                    body: env
+                })
+            }
+            else {
+                throw err;
+            }
+        })
+        )
+    });
+
+    return Promise.all(requests);
+};
+
 /**
  * Enable HipChat notifications
  * @param newRepository
