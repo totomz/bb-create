@@ -2,13 +2,12 @@ const fs = require('fs');
 const path = require('path');
 const BBCreate = require('./BBCreate');
 const program = require('commander');
+const home = require('os').homedir();
+const settings = path.join(home, '.bbcreate-settings.json');
 
 program
     .arguments('<repo_definition_json>')
     .action(repoDefinition => {
-
-        const home = require('os').homedir();
-        const settings = path.join(home, '.bbcreate-settings.json');
 
         console.log(`Settings file: ${settings}`);
         console.log(`Repo definition: ${repoDefinition}`);

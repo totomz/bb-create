@@ -19,7 +19,12 @@
     },
     {
       "key": "AWS_SECRET_2",
-      "value": "ToBeAnHero",
+      "value": "UPDATEEEEEEED",
+      "secured": false
+    },
+    {
+      "key": "PEPPA",
+      "value": "pig",
       "secured": false
     },
     {

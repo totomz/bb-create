@@ -102,27 +102,32 @@ const hyperLog = function (message) {
 
 BBCreate.prototype.setPipelineEnv = function() {
     let requests = [];
-    this.repoDef.pipelineEnvs.forEach(env => {
-        console.log(`Setting env ${env.key}`);
-        requests.push(this.buildRequest(`repositories/${this.repoDef.repoName}/pipelines_config/variables/`, {
-            method: 'POST',
-            body: env
-        }).catch(err => {
-            if (err.statusCode === 409 ) {
-                console.log(`ENV ${env.key} already set - updating`)
-                return this.buildRequest(`repositories/${this.repoDef.repoName}/pipelines_config/variables/`, {
-                    method: 'PUT',
-                    body: env
-                })
-            }
-            else {
-                throw err;
-            }
-        })
-        )
-    });
 
-    return Promise.all(requests);
+    // Get the existing env.
+    // Create the missing and update the new.
+    // Can't and don't want to delete atm.
+
+    return this.buildRequest(`repositories/${this.repoDef.repoName}/pipelines_config/variables/`, { method: 'GET' })
+        .then(envs => {
+
+            this.repoDef.pipelineEnvs.forEach(newEnv => {
+
+                let existing = envs.values.find(existing => existing.key === newEnv.key);
+                let uuid = '';
+                let method = 'POST';
+
+                if(existing) {
+                    uuid = existing.uuid;
+                    method = 'PUT';
+                }
+                requests.push(
+                    this.buildRequest(`repositories/${this.repoDef.repoName}/pipelines_config/variables/${uuid}`, { method, body: newEnv })
+                        .catch(err => {     // Handle a failure here - hopefully there will be less to update later
+                            console.log(`ERROR updating ${env.key} - ${err.message}`);
+                        })
+                );
+            });
+        });
 };
 
 /**
