@@ -1,6 +1,6 @@
 {
   "name": "bb-create",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Create Bitbucket repository given a configuraiton file",
   "main": "index.js",
   "keywords": [
